@@ -19,9 +19,9 @@ const MeanTempItem:FC<MeanTempProps> = ({ monthStat, index }) => {
         <Container>
             <TempsSpan>{getMonthName(index)}</TempsSpan>
             <FlexDiv>
-                <TempsSpan>{monthStat.maxTemp}{celsius} </TempsSpan>
-                /
-                <TempsSpan> {monthStat.minTemp}{celsius}</TempsSpan>
+                <TempsSpan>{monthStat.maxTemp}{celsius}</TempsSpan>
+                <TempsSpan> / </TempsSpan>
+                <TempsSpan>{monthStat.minTemp}{celsius}</TempsSpan>
             </FlexDiv>
             <TempsSpan>{monthStat.rainyDays} {getDayNoun(monthStat.rainyDays, ...daysNouns)}</TempsSpan>
         </Container>
