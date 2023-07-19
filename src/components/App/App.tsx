@@ -1,5 +1,4 @@
 import styled from "@emotion/styled";
-import Tabs from "../Tabs/Tabs";
 import WeatherStats from "../WeatherStats/WeatherStats";
 
 const App = () => {
@@ -7,7 +6,6 @@ const App = () => {
     return (
         <Container>
             <Title>Средние показатели погоды за 12 месяцев (г. Москва)</Title>
-            <Tabs />
             <WeatherStats />
         </Container>
     );

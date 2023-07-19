@@ -1,5 +1,5 @@
 import { FC } from "react";
-import {LabelList, Legend, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis} from "recharts";
+import { LabelList, Legend, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 import { GraphData } from "../../utils/transform-data-for-graph";
 
 interface GraphProps {
@@ -20,7 +20,7 @@ const Graph:FC<GraphProps> = ({ graphData }) => {
                     bottom: 20
                 }}
             >
-                <XAxis dataKey="name" tickLine={false} tick={{stroke: 'white'}}/>
+                <XAxis dataKey="name" tickLine={false} tick={{stroke: 'white'}} tickSize={6}/>
                 <YAxis hide domain={[-20, 35]}/>
                 <Tooltip
                     cursor={{ stroke: "#ffffff20", strokeWidth: 50 }}

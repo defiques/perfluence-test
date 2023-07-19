@@ -1,19 +1,22 @@
-export function getDayNoun(number: number, one: string, two: string, five: string) {
+export function getDayNoun(number: number) {
+
+    const daysNouns = ['день', 'дня', 'дней'];
+
     let n = Math.abs(number);
 
     n %= 100;
     if (n >= 5 && n <= 20) {
-        return five;
+        return daysNouns[2];
     }
 
     n %= 10;
     if (n === 1) {
-        return one;
+        return daysNouns[0];
     }
 
     if (n >= 2 && n <= 4) {
-        return two;
+        return daysNouns[1];
     }
 
-    return five;
+    return daysNouns[2];
 }

@@ -1,5 +1,5 @@
 import { Weather } from "../store/slices/weather";
-import {getMonthName} from "./get-month-name";
+import { getMonthName } from "./get-month-name";
 
 export interface GraphData {
     name: string,

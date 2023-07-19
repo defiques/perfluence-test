@@ -1,11 +1,13 @@
 import MeanTempItem from "../MeanTempItem/MeanTempItem";
 import styled from "@emotion/styled";
-import { useAppSelector } from "../../store/hooks";
+import { Weather } from "../../store/slices/weather";
+import { FC } from "react";
 
+interface MeanTempListProps {
+    weather: Weather[] | null
+}
 
-const MeanTempList = () => {
-
-    const weather = useAppSelector(s => s.weather.weather);
+const MeanTempList:FC<MeanTempListProps> = ({ weather }) => {
 
     const content = weather?.map((monthStat, index) =>
         <MeanTempItem key={index} monthStat={monthStat} index={index}/>

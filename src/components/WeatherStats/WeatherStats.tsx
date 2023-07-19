@@ -1,40 +1,37 @@
-import { useEffect } from 'react';
-import { useAppDispatch, useAppSelector } from "../../store/hooks";
-import { fetchWeather } from "../../store/thunk/WeatherThunk";
+import { useAppSelector } from "../../store/hooks";
 import MeanTempList from "../MeanTempList/MeanTempList";
 import GraphStats from "../GraphStats/GraphStats";
-import { Discuss } from "react-loader-spinner";
-import styled from "@emotion/styled";
+import { useFetchWeatherData } from "../../hooks/useFetchWeatherData";
+import Loader from "../Loader/Loader";
+import { useState } from "react";
+import Tabs from "../Tabs/Tabs";
+
+export type TabType = 'Обзор' | 'Графики'
+export type TabsLabelsType = ['Обзор', 'Графики'];
 
 const WeatherStats = () => {
 
-    const dispatch = useAppDispatch();
+    useFetchWeatherData();
 
-    useEffect(() => {
-        dispatch(fetchWeather())
-    }, [dispatch]);
-
-    const activeTab = useAppSelector(s => s.weather.activeTab);
     const loading = useAppSelector(s => s.weather.loading);
+    const weather = useAppSelector(s => s.weather.weather);
+    const [activeTab, setActiveTab] = useState<TabType>("Обзор");
 
-    const content = activeTab === "Обзор" ? <MeanTempList /> : <GraphStats />;
-    const loader = (
-        <LoaderWrapper>
-            <Discuss visible height="80" width="80" colors={["lightblue", "white"]}/>
-        </LoaderWrapper>
-    )
+    const tabsLabels: TabsLabelsType = ['Обзор', 'Графики']
+
+
+    const content = activeTab === "Обзор" ? <MeanTempList weather={weather} /> : <GraphStats weather={weather} />;
 
     return (
         <>
-            {loading ? loader : content}
+            <Tabs
+                tabs={tabsLabels}
+                activeTab={activeTab}
+                setActiveTab={setActiveTab}
+            />
+            {loading ? <Loader /> : content}
         </>
     );
 };
-
-const LoaderWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`
 
 export default WeatherStats;

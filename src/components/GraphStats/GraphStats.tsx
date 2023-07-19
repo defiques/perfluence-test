@@ -1,11 +1,14 @@
 import styled from "@emotion/styled";
-import { useAppSelector } from "../../store/hooks";
 import { transformDataForGraph } from "../../utils/transform-data-for-graph";
 import Graph from "../Graph/Graph";
+import { Weather } from "../../store/slices/weather";
+import { FC } from "react";
 
-const GraphStats = () => {
+interface GraphStatsProps {
+    weather: Weather[] | null
+}
 
-    const weather = useAppSelector(s => s.weather.weather);
+const GraphStats:FC<GraphStatsProps> = ({ weather }) => {
 
     if (!weather) {
         return <GraphTitle>Нет данных для построения графика</GraphTitle>

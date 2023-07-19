@@ -12,18 +12,18 @@ interface MeanTempProps {
 const MeanTempItem:FC<MeanTempProps> = ({ monthStat, index }) => {
 
     const celsius = "°";
-    const daysNouns: ['день', 'дня', 'дней'] = ['день', 'дня', 'дней'];
-
+    const dayNoun = getDayNoun(monthStat.rainyDays);
+    const month = getMonthName(index);
 
     return (
         <Container>
-            <TempsSpan>{getMonthName(index)}</TempsSpan>
+            <TempsSpan>{month}</TempsSpan>
             <FlexDiv>
                 <TempsSpan>{monthStat.maxTemp}{celsius}</TempsSpan>
                 <TempsSpan> / </TempsSpan>
                 <TempsSpan>{monthStat.minTemp}{celsius}</TempsSpan>
             </FlexDiv>
-            <TempsSpan>{monthStat.rainyDays} {getDayNoun(monthStat.rainyDays, ...daysNouns)}</TempsSpan>
+            <TempsSpan>{monthStat.rainyDays} {dayNoun}</TempsSpan>
         </Container>
     );
 };

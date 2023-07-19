@@ -1,19 +1,22 @@
 import styled from "@emotion/styled";
 import { css } from "@emotion/react";
-import { useAppDispatch, useAppSelector } from "../../store/hooks";
-import { handleTabChange } from "../../store/slices/weather";
+import { FC } from "react";
+import { TabsLabelsType, TabType } from "../WeatherStats/WeatherStats";
 
-const Tabs = () => {
 
-    const activeTab = useAppSelector(s => s.weather.activeTab);
-    const dispatch = useAppDispatch();
-    const tabs = useAppSelector(s => s.weather.tabs);
+interface TabsProps {
+    tabs: TabsLabelsType,
+    activeTab: string,
+    setActiveTab: (value: TabType) => void
+}
+
+const Tabs:FC<TabsProps> = ({ tabs, activeTab, setActiveTab }) => {
 
     const content = tabs.map(tab =>
         <Tab
             active={activeTab === tab}
             key={tab}
-            onClick={() => dispatch(handleTabChange(tab))}
+            onClick={() => setActiveTab(tab)}
         >
             {tab}
         </Tab>
