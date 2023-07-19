@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { LabelList, Legend, Line, LineChart, Tooltip, XAxis, YAxis } from "recharts";
+import {LabelList, Legend, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis} from "recharts";
 import { GraphData } from "../../utils/transform-data-for-graph";
 
 interface GraphProps {
@@ -8,64 +8,66 @@ interface GraphProps {
 
 const Graph:FC<GraphProps> = ({ graphData }) => {
     return (
-        <LineChart
-            width={900}
-            height={400}
-            data={graphData}
-            margin={{
-                top: 100,
-                right: 30,
-                left: 0,
-                bottom: 20
-            }}
-        >
-            <XAxis dataKey="name" tickLine={false} tick={{stroke: 'white'}}/>
-            <YAxis hide domain={[-20, 35]}/>
-            <Tooltip
-                cursor={{ stroke: "#ffffff20", strokeWidth: 50 }}
-                wrapperStyle={{display: "none"}}
-                animationDuration={150}
-            />
-            <Legend
-                iconType="square"
-                layout="vertical"
-                align="left"
-                verticalAlign="middle"
-                width={100}
-            />
-            <Line
-                type="linear"
-                dataKey="max"
-                name="Макс."
-                stroke="#a1ccd9"
-                strokeWidth={3}
-                dot={false}
-                isAnimationActive={false}
+        <ResponsiveContainer height={400}>
+            <LineChart
+                width={900}
+                height={400}
+                data={graphData}
+                margin={{
+                    top: 100,
+                    right: 30,
+                    left: 0,
+                    bottom: 20
+                }}
             >
-                <LabelList
+                <XAxis dataKey="name" tickLine={false} tick={{stroke: 'white'}}/>
+                <YAxis hide domain={[-20, 35]}/>
+                <Tooltip
+                    cursor={{ stroke: "#ffffff20", strokeWidth: 50 }}
+                    wrapperStyle={{display: "none"}}
+                    animationDuration={150}
+                />
+                <Legend
+                    iconType="square"
+                    layout="vertical"
+                    align="left"
+                    verticalAlign="middle"
+                    width={100}
+                />
+                <Line
+                    type="linear"
                     dataKey="max"
-                    position="top"
-                    content={<CustomizedLabel stroke="#fff" dy={-15}/>}
-                />
-            </Line>
-            <Line
-                type="linear"
-                dataKey="min"
-                stroke="#3db2d7"
-                strokeWidth={3}
-                dot={false}
-                isAnimationActive={false}
-                name="Мин."
-            >
-                <LabelList
+                    name="Макс."
+                    stroke="#a1ccd9"
+                    strokeWidth={3}
+                    dot={false}
+                    isAnimationActive={false}
+                >
+                    <LabelList
+                        dataKey="max"
+                        position="top"
+                        content={<CustomizedLabel stroke="#fff" dy={-15}/>}
+                    />
+                </Line>
+                <Line
+                    type="linear"
                     dataKey="min"
-                    position="bottom"
-                    stroke="#fff"
-                    content={<CustomizedLabel stroke="#fff" dy={25}/>}
-                />
+                    stroke="#3db2d7"
+                    strokeWidth={3}
+                    dot={false}
+                    isAnimationActive={false}
+                    name="Мин."
+                >
+                    <LabelList
+                        dataKey="min"
+                        position="bottom"
+                        stroke="#fff"
+                        content={<CustomizedLabel stroke="#fff" dy={25}/>}
+                    />
 
-            </Line>
-        </LineChart>
+                </Line>
+            </LineChart>
+        </ResponsiveContainer>
     );
 };
 

@@ -34,6 +34,9 @@ const Container = styled.div`
   color: gainsboro;
   border-bottom: 2px solid rgba(128, 128, 128, 0.25);
   padding: 10px 0;
+  @media only screen and (max-width: 900px) {
+    gap: 25px;
+  }
 `
 
 const FlexDiv = styled.div`

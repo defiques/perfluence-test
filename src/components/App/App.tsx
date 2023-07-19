@@ -21,6 +21,10 @@ const Container = styled.div`
   margin: auto;
   height: 100%;
   width: 900px;
+  @media only screen and (max-width: 900px) {
+    width: 100%;
+    padding: 0 20px;
+  }
 `
 
 const Title = styled.span`
